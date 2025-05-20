@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mágico</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <!-- Fondo oscuro al abrir el sobre -->
+    <div class="fondo" id="fondo"></div>
+
+    <!-- Contenedor del sobre -->
+    <div class="container">
+        <div class="sobre" id="sobre">
+            <div class="tapa"></div>
+            <div class="carta">
+                <p>Lorem ipsum dolor sit amet consectetur...</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Capa de partículas flotantes -->
+    <div class="particulas-contenedor" id="particulas-contenedor"></div>
+
+    <!-- Script JavaScript conectado al comportamiento -->
+    <script>
+        console.log("JS cargado correctamente 😎");
+
+        const sobre = document.getElementById('sobre');
+        const fondo = document.getElementById('fondo');
+        const particulasContenedor = document.getElementById('particulas-contenedor');
+
+        // Crear partículas flotantes
+        function generarParticulas(cantidad = 30) {
+            particulasContenedor.innerHTML = '';
+            for (let i = 0; i < cantidad; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particula');
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.bottom = '-' + Math.random() * 20 + 'vh';
+                p.style.animationDuration = (3 + Math.random() * 3) + 's';
+                p.style.opacity = Math.random();
+                particulasContenedor.appendChild(p);
+            }
+        }
+
+        // Evento click en el sobre
+        sobre.addEventListener('click', function () {
+            this.classList.toggle('abierto');
+            fondo.classList.toggle('oscuro');
+            particulasContenedor.classList.toggle('activo');
+
+            if (this.classList.contains('abierto')) {
+                generarParticulas(40);
+            } else {
+                particulasContenedor.innerHTML = ''; // Limpia al cerrar
+            }
+
+            console.log("¡Sobre clickeado! ✉️");
+        });
+    </script>
+
+</body>
+
+
+
+
+</html>
